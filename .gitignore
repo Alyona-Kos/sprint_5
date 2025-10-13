@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Selenium/webdriver
+webdriver/
+drivers/
+chromedriver.exe
+geckodriver.exe
+
+# System
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
