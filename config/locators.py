@@ -36,11 +36,13 @@ class Locators:
     constructor_button_in_header = (By.XPATH, "//p[contains(text(), 'Конструктор')]")
     logo = (By.XPATH, "//div[contains(@class, 'AppHeader_header__logo')]")
     
+ 
+    selected_section = (By.XPATH, "//div[contains(@class, 'tab_tab_type_current__2BEPc')]//span")
+
     # ===== РАЗДЕЛЫ КОНСТРУКТОРА =====
-    buns_section = (By.XPATH, "//span[text()='Булки']")
-    sauces_section = (By.XPATH, "//span[text()='Соусы']")
-    fillings_section = (By.XPATH, "//span[text()='Начинки']")
-    selected_section = (By.XPATH, "//div[contains(@class, 'tab_tab_type_current__2BEPc')]")
+    buns_section = (By.XPATH, "//span[text()='Булки']/parent::div")
+    sauces_section = (By.XPATH, "//span[text()='Соусы']/parent::div")
+    fillings_section = (By.XPATH, "//span[text()='Начинки']/parent::div")
     
     # ===== СООБЩЕНИЯ ОБ ОШИБКАХ =====
     incorrect_password_message = (By.XPATH, "//p[contains(text(), 'Некорректный пароль')]")
