@@ -2,14 +2,21 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from locators import Locators
+import sys
+import os
+
+# Добавляем путь к корневой директории для импорта
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from config.urls import Urls
+from config.locators import Locators
 
 
 def test_navigate_to_personal_account(driver):
     """Тест перехода в личный кабинет"""
     
     # Исправляем URL на правильный
-    driver.get("https://stellarburgers.education-services.ru/")
+    driver.get(Urls.BASE_URL)
 
     # Исправляем email и пароль на правильные
     email = 'alena_kostrikina_33@yandex.ru'
@@ -34,4 +41,3 @@ def test_navigate_to_personal_account(driver):
     
     # Проверяем что в личном кабинете - видна история заказов
     assert driver.find_element(*Locators.order_history).is_displayed()
-    print("✅ Переход в личный кабинет - УСПЕХ")

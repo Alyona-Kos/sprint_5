@@ -2,14 +2,21 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from locators import Locators
+import sys
+import os
+
+# Добавляем путь к корневой директории для импорта
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from config.urls import Urls
+from config.locators import Locators
 
 
 def test_logout(driver):
     """Тест выхода из аккаунта"""
     
-    # 1. Открываем главную страницу
-    driver.get("https://stellarburgers.education-services.ru/")
+    # 1. Открываем главную страницу (используем константу из Urls)
+    driver.get(Urls.BASE_URL)
 
     # 2. Данные для входа
     email = 'alena_kostrikina_33@yandex.ru'
@@ -38,5 +45,3 @@ def test_logout(driver):
     # 8. Проверяем что вышли - видна кнопка входа
     WebDriverWait(driver, 10).until(EC.visibility_of_element_located(Locators.login_button))
     assert driver.find_element(*Locators.login_button).is_displayed()
-    
-    print("✅ Выход из аккаунта - УСПЕХ")

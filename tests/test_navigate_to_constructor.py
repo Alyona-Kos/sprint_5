@@ -2,14 +2,21 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from locators import Locators
+import sys
+import os
+
+# Добавляем путь к корневой директории для импорта
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from config.urls import Urls
+from config.locators import Locators
 
 
 def test_navigate_to_constructor_via_constructor_button(driver):
     """Переход по клику на «Конструктор» из личного кабинета"""
     
     # 1. Логинимся и переходим в личный кабинет
-    driver.get("https://stellarburgers.education-services.ru/")
+    driver.get(Urls.BASE_URL)
     
     email = 'alena_kostrikina_33@yandex.ru'
     password = 'kos12345'
@@ -36,15 +43,13 @@ def test_navigate_to_constructor_via_constructor_button(driver):
     # 6. Проверяем что перешли в конструктор - видна кнопка "Оформить заказ"
     WebDriverWait(driver, 10).until(EC.visibility_of_element_located(Locators.make_an_order_button))
     assert driver.find_element(*Locators.make_an_order_button).is_displayed()
-    
-    print("✅ Успешный переход в конструктор через кнопку 'Конструктор'")
 
 
 def test_navigate_to_constructor_via_logo(driver):
     """Переход по клику на логотип Stellar Burgers из личного кабинета"""
     
     # 1. Логинимся и переходим в личный кабинет
-    driver.get("https://stellarburgers.education-services.ru/")
+    driver.get(Urls.BASE_URL)
     
     email = 'alena_kostrikina_33@yandex.ru'
     password = 'kos12345'
@@ -71,5 +76,3 @@ def test_navigate_to_constructor_via_logo(driver):
     # 6. Проверяем что перешли в конструктор - видна кнопка "Оформить заказ"
     WebDriverWait(driver, 10).until(EC.visibility_of_element_located(Locators.make_an_order_button))
     assert driver.find_element(*Locators.make_an_order_button).is_displayed()
-    
-    print("✅ Успешный переход в конструктор через логотип")
